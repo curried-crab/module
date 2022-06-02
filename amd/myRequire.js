@@ -55,6 +55,7 @@
         mod.onload.push(callback)
       }
     } else {
+      // 插入script加载脚本
       mod = moduleCache[modName] = {
         modName,
         status: "loading",
