@@ -32,14 +32,30 @@
     }
   }
 
-  var _getPathUrl = function (modName) {
-    var url = modName;
-    if (url.indexOf('.js') == -1) url = url + '.js';
-    return url;
-  };
+  // 获取path url
+  function getPathUrl(modName) {
+    let url = modName
+    if (url.indexOf(".js") === -1) {
+      url = url + ".js"
+    }
+    return url
+  }
+
+  // 加载模块
+  function loadMod(modName, callback) {
+    const url = getPathUrl(modName)
+    let fs, mod;
+
+    // 查看是否有缓存
+    if (moduleCache[modName]) {
+
+    } else {
+
+    }
+  }
 
   var loadMod = function (modName, callback) {
-    var url = _getPathUrl(modName), fs, mod;
+    var url = getPathUrl(modName), fs, mod;
 
     if (moduleCache[modName]) {
       mod = moduleCache[modName];
