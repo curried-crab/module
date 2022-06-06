@@ -1,5 +1,6 @@
 define(function () {
   return {
-    name: "module01"
+    name: "module01",
+    age: 123
   }
 })
