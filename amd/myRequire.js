@@ -5,10 +5,12 @@
   const params = []
 
   function require(deps, callback) {
+    console.log("deps", deps)
     let depCount = 0
     let isEmpty = false
 
     const modName = document.currentScript && document.currentScript.id || "REQUIRE_MAIN"
+    console.log("modName", modName)
 
     if (deps.length) {
       for (let i = 0; i < deps.length; i++) {
@@ -16,6 +18,7 @@
         loadMod(deps[i], function (param) {
           params[i] = param;
           depCount--
+          console.log("load depCount:", depCount)
           if (depCount === 0) {
             saveModule(modName, params, callback)
           }
@@ -83,10 +86,13 @@
 
       mod.export = callback ? callback(params) : null;
 
+      console.log("mod：", mod, "params:", params)
+
       while (fn = mod.onload.shift()) {
         fn(mod.export)
       }
     } else {
+      console.log("run save:", callback)
       callback && callback.apply(window, params)
     }
   }
